@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { todoAdd } from './_actions/todoActions';
-import { todoClear } from './_actions/todoClear';
 
 class TodoForm extends Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class TodoForm extends Component {
         />
 
         <button type="submit">Add todo</button>
-        <button type="submit">Clear todo</button>
       </form>
     );
   }
@@ -49,10 +47,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   todoAdd: todoName => dispatch(todoAdd(todoName)),
-});
-
-const mapDispatchToProps = dispatch => ({
-  todoClear: () => dispatch(todoClear()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);

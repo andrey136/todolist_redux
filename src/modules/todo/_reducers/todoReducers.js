@@ -1,7 +1,7 @@
 const initialState = {
   todoList: [
-    { id: 1, name: 'Task 1' },
-    { id: 2, name: 'Task 2' },
+    {id: 1, name: 'Task 1'},
+    {id: 2, name: 'Task 2'},
   ],
 };
 
@@ -17,9 +17,14 @@ const todo = (state = initialState, action) => {
             id: Math.random(),
           }],
       };
-    case 'TODO_CLEAR' :
-      return{
 
+    case 'TODO_LOAD' :
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList,
+          ...adaptLoaded(action.payload),
+        ]
       };
 
     default:
@@ -28,3 +33,7 @@ const todo = (state = initialState, action) => {
 };
 
 export default todo;
+
+function adaptLoaded(loadedArray){
+  return loadedArray.map(el => ({ name: el.title, id: el.title }));
+}
